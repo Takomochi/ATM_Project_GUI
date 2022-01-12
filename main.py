@@ -281,47 +281,52 @@ def write_info():
     password = t_pass.get()
     accounts = os.listdir('clients')
 
-    if name == "" or age == "" or email == "" or password == "":
-        notif.config(fg='red',text="All fields are required")
-        return
-    elif len(password) < 6:
-        notif.config(fg='red',text="Password has to be more than 6 characters")
-        return
-    
+    # Function to calculate age
     def calculate_age(born):
         today = date.today()
         return today.year - born.year - ((today.month, today.day) < (born.month, born.day))
 
+    # Setting year, month, day
     year = int(age.split('-')[0])
     month = int(age.split('-')[1])
     day = int(age.split('-')[2])
-
     cal_age = str(calculate_age(date(year, month, day)))
 
+    # Directory
     save_path = './clients/'
     file_name = email+'.txt'
     completeName = os.path.join(save_path, file_name)
 
+    # Regular expression
     regex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
 
     for account in accounts:
         account_name = account.split('.txt')[0]
-        
+    
         if email == account_name:
             notif.config(fg='red',text="Account already exists")
-            return 
-        elif not (re.fullmatch(regex, email)):
-            notif.config(fg='red', text='Email is not valid')
 
-        else:
-            with open(completeName,'w') as new_account:
-                new_account.write(name+'\n')
-                new_account.write(age+'\n')
-                new_account.write(cal_age+'\n')
-                new_account.write(email+'\n')
-                new_account.write(password+'\n')
-                new_account.write('0')
-                notif.config(fg='green', text='Thank you for creating your account today!')
+    # Validation
+    if name == "" or age == "" or email == "" or password == "":
+            notif.config(fg='red',text="All fields are required")
+
+    elif len(password) < 6:
+        notif.config(fg='red',text="Password has to be more than 6 characters")
+
+    elif (re.fullmatch(regex, email)):
+        with open(completeName,'w') as new_account:
+            new_account.write(name+'\n')
+            new_account.write(age+'\n')
+            new_account.write(cal_age+'\n')
+            new_account.write(email+'\n')
+            new_account.write(password+'\n')
+            new_account.write('0')
+            notif.config(fg='green', text='Thank you for creating your account today!')
+
+    elif not (re.fullmatch(regex, email)):
+        notif.config(fg='red', text='Email is not valid')
+
+        
 
 
 # Input screen for sign up
