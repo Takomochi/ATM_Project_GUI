@@ -153,7 +153,7 @@ def change_password():
     Entry(change_passward_screen, textvariable=o_t_pass, font=('Calibri',14),show='*').grid(row=0, column=1,pady=10)
     Entry(change_passward_screen,textvariable=c_t_pass, font=('Calibri',14),show='*').grid(row=1,column=1,pady=10)
 
-    Button(change_passward_screen, text="Change Passward", font=('Calibri',14), command=update_passward).grid(row=2,column=1,pady=15,sticky=W)
+    Button(change_passward_screen, text="Change Password", font=('Calibri',14), command=update_passward).grid(row=2,column=1,pady=15,sticky=W)
     notif = Label(change_passward_screen, font=('Calibri',12))
     notif.grid(row=3, padx=10, pady=10,column=1)
 
@@ -325,8 +325,6 @@ def write_info():
 
     elif not (re.fullmatch(regex, email)):
         notif.config(fg='red', text='Email is not valid')
-
-        
 
 
 # Input screen for sign up
