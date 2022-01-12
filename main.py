@@ -12,7 +12,7 @@ import re
 
 # Initial window
 root = Tk()
-root.title("Shimbank app")
+root.title("ATM app")
 
 # Image import
 img = Image.open('Resources/undraw_Savings_re_eq4w.png')
@@ -309,8 +309,11 @@ def write_info():
         
         if email == account_name:
             notif.config(fg='red',text="Account already exists")
-            return
-        elif (re.fullmatch(regex, email)):
+            return 
+        elif not (re.fullmatch(regex, email)):
+            notif.config(fg='red', text='Email is not valid')
+
+        else:
             with open(completeName,'w') as new_account:
                 new_account.write(name+'\n')
                 new_account.write(age+'\n')
@@ -319,8 +322,7 @@ def write_info():
                 new_account.write(password+'\n')
                 new_account.write('0')
                 notif.config(fg='green', text='Thank you for creating your account today!')
-        else:
-            notif.config(fg='red', text='Email is not valid')
+
 
 # Input screen for sign up
 def sign_up():
@@ -380,7 +382,7 @@ def log_in():
     notif.grid(row=4, column=1,padx=5, pady=10)
 
 # Initial Screen
-Label(root,text="Welcome to Shimbank!",font=('Poppins',18,'bold')).grid(row=0,sticky=N, pady=10,padx=50)
+Label(root,text="Welcome to Trust Bank!",font=('Poppins',18,'bold')).grid(row=0,sticky=N, pady=10,padx=50)
 Label(root, image=img).grid(row=1,pady=10)
 Button(root,text="Login",font=('Poppins',12),height=2, width=15,bg='white',command=log_in).grid(row=2, column=0, pady=10)
 Button(root,text="Sign up",font=('Poppins',12),height=2, width=15, bg='white',command=sign_up).grid(row=3,column=0,pady=10, padx=50)
