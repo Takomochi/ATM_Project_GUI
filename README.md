@@ -1,7 +1,7 @@
 # ATM Project GUI
 
 ## Overview of the project
-In this project, I have created an automated transaction system utilizing tkinter. <br>
+In this project, I have created an automated transaction machine - A banking system utilizing tkinter.  <br>
 The system is for creating and editing bank accounts. All the accounts created are stored in the clients' folder as text files.
 
 ## Resouces
